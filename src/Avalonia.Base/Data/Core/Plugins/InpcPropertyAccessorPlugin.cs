@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Avalonia.Utilities;
 
@@ -11,6 +11,8 @@ namespace Avalonia.Data.Core.Plugins
     /// Reads a property from a standard C# object that optionally supports the
     /// <see cref="INotifyPropertyChanged"/> interface.
     /// </summary>
+    [UnconditionalSuppressMessage("Trimming", "IL2075:'this' argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.",
+        Justification = "InpcPropertyAccessor is reflection based. Property won't be trimmed if CompiledBinding is used.")]
     public class InpcPropertyAccessorPlugin : IPropertyAccessorPlugin
     {
         private readonly Dictionary<(Type, string), PropertyInfo?> _propertyLookup =
@@ -52,7 +54,7 @@ namespace Avalonia.Data.Core.Plugins
 
         private const BindingFlags PropertyBindingFlags =
             BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance;
-        
+
         private PropertyInfo? GetFirstPropertyWithName(object instance, string propertyName)
         {
             if (instance is IReflectableType reflectableType && instance is not Type)
@@ -70,7 +72,8 @@ namespace Avalonia.Data.Core.Plugins
             return propertyInfo;
         }
 
-        private PropertyInfo? TryFindAndCacheProperty(Type type, string propertyName)
+        private PropertyInfo? TryFindAndCacheProperty(
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.NonPublicProperties)] Type type, string propertyName)
         {
             PropertyInfo? found = null;
 

@@ -3,9 +3,11 @@ using Avalonia.Data;
 using Avalonia.Markup.Xaml.MarkupExtensions.CompiledBindings;
 using Avalonia.Data.Core;
 using Avalonia.Markup.Parsers;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Avalonia.Markup.Xaml.MarkupExtensions
 {
+    [UnconditionalSuppressMessage("Trimming", "IL2109", Justification = "BindingBase requires unreferenced code, but CompiledBinding does not.")]
     public class CompiledBindingExtension : BindingBase
     {
         public CompiledBindingExtension()

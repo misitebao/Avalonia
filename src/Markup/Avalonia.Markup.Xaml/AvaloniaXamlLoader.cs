@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Avalonia.Platform;
 
@@ -32,6 +33,7 @@ namespace Avalonia.Markup.Xaml
         /// A base URI to use if <paramref name="uri"/> is relative.
         /// </param>
         /// <returns>The loaded object.</returns>
+        [RequiresUnreferencedCode("")]
         public static object Load(Uri uri, Uri baseUri = null)
         {
             Contract.Requires<ArgumentNullException>(uri != null);

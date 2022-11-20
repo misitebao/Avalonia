@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
@@ -14,6 +15,7 @@ using Avalonia.VisualTree;
 
 namespace Avalonia.Data
 {
+    [RequiresUnreferencedCode("<pending>")]
     public abstract class BindingBase : IBinding
     {
         /// <summary>

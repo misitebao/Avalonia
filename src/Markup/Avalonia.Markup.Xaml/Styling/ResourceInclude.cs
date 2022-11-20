@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Avalonia.Controls;
 
 #nullable enable
@@ -35,6 +36,7 @@ namespace Avalonia.Markup.Xaml.Styling
         /// <summary>
         /// Gets the loaded resource dictionary.
         /// </summary>
+        [UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "<Pending>")]
         public IResourceDictionary Loaded
         {
             get

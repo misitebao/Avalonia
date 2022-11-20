@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reflection;
@@ -65,6 +66,7 @@ namespace Avalonia.Data.Core.Plugins
                 new object[] { target, box })!;
         }
 
+        [UnconditionalSuppressMessage("Trimming", "IL2060", Justification = "<Pending>")]
         private static MethodInfo GetObservableSelect(Type source)
         {
             return GetObservableSelect().MakeGenericMethod(source, typeof(object));

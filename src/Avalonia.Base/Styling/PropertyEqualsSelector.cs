@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Avalonia.Styling.Activators;
 using Avalonia.Utilities;
@@ -92,6 +93,8 @@ namespace Avalonia.Styling
         protected override Selector? MovePrevious() => _previous;
         protected override Selector? MovePreviousOrParent() => _previous;
 
+        [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "<Pending>")]
+        [UnconditionalSuppressMessage("Trimming", "IL2067", Justification = "<Pending>")]
         internal static bool Compare(Type propertyType, object? propertyValue, object? value)
         {
             if (propertyType == typeof(object) &&

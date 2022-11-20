@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
@@ -22,6 +23,7 @@ namespace Avalonia.Data.Converters
         readonly PropertyChangedEventHandler? propertyChangedEventHandler;
         readonly string[]? dependencyProperties;
 
+        [RequiresUnreferencedCode("This ICommand is based on ReflectionBinding")]
         public MethodToCommandConverter(Delegate action)
         {
             var target = action.Target;

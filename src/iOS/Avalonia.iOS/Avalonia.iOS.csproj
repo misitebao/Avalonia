@@ -16,4 +16,5 @@
   </ItemGroup>
   
   <Import Project="..\..\..\build\DevAnalyzers.props" />
+  <Import Project="..\..\..\build\TrimmingEnable.props" />
 </Project>

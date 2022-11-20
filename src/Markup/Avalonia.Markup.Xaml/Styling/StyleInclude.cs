@@ -2,6 +2,7 @@ using Avalonia.Styling;
 using System;
 using Avalonia.Controls;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 #nullable enable
 
@@ -44,6 +45,7 @@ namespace Avalonia.Markup.Xaml.Styling
         /// <summary>
         /// Gets the loaded style.
         /// </summary>
+        [UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "<Pending>")]
         public IStyle Loaded
         {
             get

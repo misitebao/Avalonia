@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Avalonia.Data.Core.Plugins
 {
+    [UnconditionalSuppressMessage("Trimming", "IL2067:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The parameter of method does not have matching annotations.",
+        Justification = "MethodAccessorPlugin is reflection based. Method won't be trimmed if CompiledBinding is used.")]
     public class MethodAccessorPlugin : IPropertyAccessorPlugin
     {
         private readonly Dictionary<(Type, string), MethodInfo?> _methodLookup =
@@ -46,7 +49,8 @@ namespace Avalonia.Data.Core.Plugins
             return methodInfo;
         }
 
-        private MethodInfo? TryFindAndCacheMethod(Type type, string methodName)
+        private MethodInfo? TryFindAndCacheMethod(
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods | DynamicallyAccessedMemberTypes.NonPublicMethods)] Type type, string methodName)
         {
             MethodInfo? found = null;
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -29,6 +30,8 @@ namespace Avalonia.Data.Core.Plugins
             return new Accessor(reference, name, inner);
         }
 
+        [UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code",
+            Justification = "DataValidation is reflection based")]
         private sealed class Accessor : DataValidationBase
         {
             private readonly ValidationContext? _context;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -193,6 +194,7 @@ namespace Avalonia.Data.Core.Parsers
             throw new ExpressionParseException(0, $"Invalid method call in binding expression: '{node.Method.DeclaringType!.AssemblyQualifiedName}.{node.Method.Name}'.");
         }
 
+        [UnconditionalSuppressMessage("Trimming", "IL2072", Justification = "<Pending>")]
         private PropertyInfo? TryGetPropertyFromMethod(MethodInfo method)
         {
             var type = method.DeclaringType;
