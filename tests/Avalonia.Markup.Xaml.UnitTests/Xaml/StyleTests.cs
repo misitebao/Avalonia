@@ -411,7 +411,6 @@ namespace Avalonia.Markup.Xaml.UnitTests.Xaml
                 };
 
                 var list = window.FindControl<ListBox>("list");
-                list.VirtualizationMode = ItemVirtualizationMode.Simple;
                 list.Items = collection;
 
                 window.Show();
