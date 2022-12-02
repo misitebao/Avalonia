@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Specialized;
 using System.Reactive.Linq;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Notifications;
@@ -36,7 +37,8 @@ namespace Avalonia.Controls
         ICloseable,
         IStyleHost,
         ILogicalRoot,
-        ITextInputMethodRoot
+        ITextInputMethodRoot,
+        IPageHost
     {
         /// <summary>
         /// Defines the <see cref="ClientSize"/> property.
@@ -324,6 +326,8 @@ namespace Avalonia.Controls
             ?? (PlatformImpl as ITopLevelImplWithStorageProvider)?.StorageProvider
             ?? throw new InvalidOperationException("StorageProvider platform implementation is not available.");
 
+        public IInsetsManager? InsetsManager => (PlatformImpl as ITopLevelWithInsetsManager)?.InsetsManager;
+
         IRenderTarget IRenderRoot.CreateRenderTarget() => CreateRenderTarget();
 
         /// <inheritdoc/>
@@ -548,6 +552,11 @@ namespace Avalonia.Controls
 
             if (focused == this)
                 KeyboardDevice.Instance?.SetFocusedElement(null, NavigationMethod.Unspecified, KeyModifiers.None);
+        }
+
+        public bool SetPage(Page page)
+        {
+            return false;
         }
 
         ITextInputMethodImpl? ITextInputMethodRoot.InputMethod =>

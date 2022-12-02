@@ -11,7 +11,7 @@ using ControlCatalog.Pages;
 
 namespace ControlCatalog
 {
-    public class MainView : UserControl
+    public class MainView : Page
     {
         public MainView()
         {

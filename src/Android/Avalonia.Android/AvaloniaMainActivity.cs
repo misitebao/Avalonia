@@ -6,6 +6,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using AndroidX.AppCompat.App;
+using AndroidX.Core.View;
 using AndroidX.Lifecycle;
 
 using AndroidRect = Android.Graphics.Rect;
